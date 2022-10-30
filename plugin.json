@@ -1,10 +1,10 @@
 {
-  "slug": "dummy-plugin",
-  "name": "Dummy Plugin",
+  "slug": "TAK",
+  "name": "The Acid Kit",
   "version": "2.0.0",
-  "license": "CC0-1.0",
-  "brand": "DummyModules",
-  "author": "Public Domain",
+  "license": "GPL-v3-or-later",
+  "brand": "FergusL",
+  "author": "FergusL",
   "authorEmail": "",
   "authorUrl": "",
   "pluginUrl": "",
@@ -14,8 +14,8 @@
   "changelogUrl": "",
   "modules": [
     {
-      "slug": "DummyModule",
-      "name": "DummyModule",
+      "slug": "AcidStation",
+      "name": "AcidStation",
       "description": "",
       "tags": []
     }

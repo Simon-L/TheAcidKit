@@ -2,7 +2,7 @@
 RACK_DIR ?= ../..
 
 # FLAGS will be passed to both the C and C++ compiler
-FLAGS +=
+FLAGS += -Idep/slime4rack/dep/slime4rack/include
 CFLAGS +=
 CXXFLAGS +=
 
@@ -12,6 +12,12 @@ LDFLAGS +=
 
 # Add .cpp files to the build
 SOURCES += $(wildcard src/*.cpp)
+
+slime4rack := dep/slime4rack
+# OBJECTS += $(slime4rack)
+DEPS += $(slime4rack)
+$(slime4rack):
+	git clone https://gitlab.com/slimechild/substation-opensource dep/slime4rack
 
 # Add files to the ZIP package when running `make dist`
 # The compiled plugin and "plugin.json" are automatically added.
