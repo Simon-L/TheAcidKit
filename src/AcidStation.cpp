@@ -208,12 +208,10 @@ struct AcidStation : Module {
 
 			hold_filter.process(params[HOLD_PARAM].getValue() * 2.0f);
 			if (hold_filter.isRising()) {
-				DEBUG("Hooooold!");
 				eg1_decay = 1.0; // 10000ms
 				eg1.decay_time = std::pow(10.0f, eg1_decay);
 			}
 			if (hold_filter.isFalling()) {
-				DEBUG("Not Hooooold!");
 				eg1_decay = params[VCA_DECAY_PARAM].getValue();
 				eg1.decay_time = std::pow(10.0f, eg1_decay);
 			}
@@ -321,7 +319,7 @@ struct AcidStation : Module {
 			level_filter.process(args.sampleTime * static_cast<float>(level_divider.division),
 								 std::abs(clipped[0] - signal[0]));
 		}
-		
+
 		// Lights
 		if (light_divider.process()) {
 			lights[VCA_DECAY_LIGHT].setSmoothBrightness(

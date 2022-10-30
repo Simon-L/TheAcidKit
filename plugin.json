@@ -18,6 +18,12 @@
       "name": "AcidStation",
       "description": "",
       "tags": []
+    },
+    {
+      "slug": "AcidComposer",
+      "name": "AcidComposer",
+      "description": "",
+      "tags": []
     }
   ]
 }

@@ -2,7 +2,7 @@
 RACK_DIR ?= ../..
 
 # FLAGS will be passed to both the C and C++ compiler
-FLAGS += -Idep/slime4rack/dep/slime4rack/include
+FLAGS += -std=c++14 -Idep/chowdsp_wdf/include -Idep/slime4rack/dep/slime4rack/include
 CFLAGS +=
 CXXFLAGS +=
 
@@ -14,10 +14,14 @@ LDFLAGS +=
 SOURCES += $(wildcard src/*.cpp)
 
 slime4rack := dep/slime4rack
-# OBJECTS += $(slime4rack)
 DEPS += $(slime4rack)
 $(slime4rack):
 	git clone https://gitlab.com/slimechild/substation-opensource dep/slime4rack
+
+chowdsp_wdf := dep/chowdsp_wdf
+DEPS += $(chowdsp_wdf)
+$(chowdsp_wdf):
+	git clone https://github.com/Chowdhury-DSP/chowdsp_wdf dep/chowdsp_wdf
 
 # Add files to the ZIP package when running `make dist`
 # The compiled plugin and "plugin.json" are automatically added.
