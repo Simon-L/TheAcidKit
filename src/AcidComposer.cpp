@@ -954,6 +954,12 @@ struct Small303Knob : RoundSmallBlackKnob {
     }
 };
 
+struct _303PJ301MPort : PJ301MPort {
+	_303PJ301MPort() {
+        setSvg(Svg::load(asset::plugin(pluginInstance, "res/PJ301M_acid.svg")));
+	}
+};
+
 struct AcidComposerWidget : ModuleWidget {
 
 	struct GreenLight : GrayModuleLightWidget {
@@ -976,12 +982,12 @@ struct AcidComposerWidget : ModuleWidget {
 		// Inputs
 		float xGuides[] = {12.51, 25.25, 57.14, 67.72, 78.30};
 		float yGuides[] = {51.59, 101.62, 114.75};
-		addInput(createInputCentered<PJ301MPort>(mm2px(Vec(xGuides[0], yGuides[1])), module, AcidComposer::RESET_INPUT));
-		addInput(createInputCentered<PJ301MPort>(mm2px(Vec(xGuides[0], yGuides[2])), module, AcidComposer::CLOCK_INPUT));
+		addInput(createInputCentered<_303PJ301MPort>(mm2px(Vec(xGuides[0], yGuides[1])), module, AcidComposer::RESET_INPUT));
+		addInput(createInputCentered<_303PJ301MPort>(mm2px(Vec(xGuides[0], yGuides[2])), module, AcidComposer::CLOCK_INPUT));
 		// Outputs
-		addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(xGuides[2], yGuides[2])), module, AcidComposer::ACCENT_OUTPUT));
-		addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(xGuides[3], yGuides[2])), module, AcidComposer::GATE_OUTPUT));
-		addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(xGuides[4], yGuides[2])), module, AcidComposer::CV_OUTPUT));
+		addOutput(createOutputCentered<_303PJ301MPort>(mm2px(Vec(xGuides[2], yGuides[2])), module, AcidComposer::ACCENT_OUTPUT));
+		addOutput(createOutputCentered<_303PJ301MPort>(mm2px(Vec(xGuides[3], yGuides[2])), module, AcidComposer::GATE_OUTPUT));
+		addOutput(createOutputCentered<_303PJ301MPort>(mm2px(Vec(xGuides[4], yGuides[2])), module, AcidComposer::CV_OUTPUT));
 
 		addParam(createParamCentered<Small303Knob>(mm2px(Vec(xGuides[0], yGuides[0])), module, AcidComposer::RES_PARAM));
 		addParam(createParamCentered<Small303Knob>(mm2px(Vec(xGuides[1], yGuides[0])), module, AcidComposer::CAP_PARAM));
