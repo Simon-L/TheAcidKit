@@ -157,10 +157,6 @@ struct AcidComposer : Module {
 		configParam(CAP_PARAM, -1.f, 1.f, 0.f, "Slide capacitor");
 
 		clockIgnoreOnReset = (long) (clockIgnoreOnResetDuration * APP->engine->getSampleRate());
-		attributes[0][0].setGate(true);
-		attributes[0][4].setGate(true);
-		attributes[0][8].setGate(true);
-		attributes[0][12].setGate(true);
 
 		sequence.headerStr = std::string("A 16 +0");
 		sequence.notesStr = std::string(64, ' ');
@@ -388,13 +384,13 @@ struct AcidComposer : Module {
 			if (attributes[0][stepIndexRun].getGate()) currentSlide = attributes[0][stepIndexRun].getSlide();
 
 			// check is upcoming step is tied or first step if current step is last of pattern
-			bool previousIsGate = attributes[0][(stepIndexRun - 1 < 0 ? 16 : stepIndexRun - 1)].getGate();
+			bool previousIsGate = attributes[0][(stepIndexRun - 1 < 0 ? 15 : stepIndexRun - 1)].getGate();
 
-			bool nextIsTie = attributes[0][(stepIndexRun + 1 >= 16 ? 0 : stepIndexRun + 1)].getTie();
-			bool previousIsTie = attributes[0][(stepIndexRun - 1 < 0 ? 16 : stepIndexRun - 1)].getTie();
+			bool nextIsTie = attributes[0][(stepIndexRun + 1 >= 15 ? 0 : stepIndexRun + 1)].getTie();
+			bool previousIsTie = attributes[0][(stepIndexRun - 1 < 0 ? 15 : stepIndexRun - 1)].getTie();
 
 			bool nextIsSlide = attributes[0][(stepIndexRun + 1 >= 16 ? 0 : stepIndexRun + 1)].getSlide();
-			bool previousIsSlide = attributes[0][(stepIndexRun - 1 < 0 ? 16 : stepIndexRun - 1)].getSlide();
+			bool previousIsSlide = attributes[0][(stepIndexRun - 1 < 0 ? 15 : stepIndexRun - 1)].getSlide();
 
 			bool isTie = attributes[0][stepIndexRun].getTie();
 			bool isGate = attributes[0][stepIndexRun].getGate();
@@ -496,8 +492,10 @@ struct AcidComposer : Module {
 		
 		// running
 		json_t *runningJ = json_object_get(rootJ, "running");
-		if (runningJ)
+		if (runningJ) {
 			running = json_is_true(runningJ);
+			initRun();
+		}
 	}
 };
 
