@@ -1,3 +1,6 @@
+// AcidComposer contains code adapted from ImpromptuModular PhraseSeq16
+// PhraseSeq16 is copyright © 2018-2021 Marc Boulé and is licensed under the terms of the GNU GPL either v3 or later
+
 #include "plugin.hpp"
 #include "header_regex.hpp"
 
@@ -127,13 +130,13 @@ struct AcidComposer : Module {
 	dsp::SchmittTrigger resetTrigger;
 	bool running;
 	int stepIndexRun;
-	float notes[16][16]; // [-3.0 : 3.917]. First index is patten number, 2nd index is step
-	float sharpflats[16][16]; // [-3.0 : 3.917]. First index is patten number, 2nd index is step
+	float notes[16][16];
+	float sharpflats[16][16];
 	float octaves[16][16];
 	float transposes[16];
 	char letters[16];
 	uint8_t lengths[16];
-	StepAttributes attributes[16][16]; // First index is patten number, 2nd index is step (see enum AttributeBitMasks for details)
+	StepAttributes attributes[16][16];
 	static constexpr float clockIgnoreOnResetDuration = 0.001f;// disable clock on powerup and reset for 1 ms (so that the first step plays)
 	long clockIgnoreOnReset;
 	float resetLight;
@@ -167,6 +170,13 @@ struct AcidComposer : Module {
 		sequence.dirty = false;
 
 		resetOnRun = true;
+
+		initRun();
+	}
+
+	void initRun() { // run button activated or run edge in run input jack
+		clockIgnoreOnReset = (long) (clockIgnoreOnResetDuration * APP->engine->getSampleRate());
+		stepIndexRun = 0;
 	}
 
 	float noteToCv(unsigned char ch) {
@@ -310,11 +320,6 @@ struct AcidComposer : Module {
 				(attributes[0][i].getAccent() ? 'A' : ' '), (attributes[0][i].getSlide() ? 'S' : ' '), time);
 		}
 		return 0;
-	}
-
-	void initRun() { // run button activated or run edge in run input jack
-		clockIgnoreOnReset = (long) (clockIgnoreOnResetDuration * APP->engine->getSampleRate());
-		stepIndexRun = 0;
 	}
 
 	float oldResParam;

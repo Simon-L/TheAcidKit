@@ -22,13 +22,20 @@ Each line contains informations that are then made into a pattern:
 
 There's an overkill bit hidden in this module: slide is made using realtime analog circuit modelling using WDF to get a response very close to the original. The capacitor and resistor knobs affect the slide: increase for longer slides, decrease for shorter slides.
 
+I love making sequencer modules, for this project I decided to start directly from ImpromptuModular's PhraseSeq16 code and expand from it.
+
 ### Disclaimer
 
+#### AcidStation
 > This product includes software developed by Coriander V. Pines, doing business as Slime Child Audio (https://slimechildaudio.com/).
+#### AcidComposer
+Based on code from ImpromptuModular:
+> PhraseSeq16 is copyright © 2018-2021 Marc Boulé and is licensed under the terms of the GNU GPL either v3 or later
 
 ### Acknowledgment
 Once again, huge thanks to Slime Child Audio!  
 AcidStation would not have been possible without the previous work from antto (on KVR and IRC), aciddose, Robin Schmidt, Robin Whittle, mystran
+AcidComposer could not exist without the solid foundation of Marc Boulé's work for ImpromptuModular!
 
 ### References
 - http://antonsavov.net/cms/projects/303andmidi.html
