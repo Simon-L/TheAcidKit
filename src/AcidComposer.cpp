@@ -126,7 +126,7 @@ struct AcidComposer : Module {
 	dsp::SchmittTrigger runningTrigger;
 	dsp::SchmittTrigger resetTrigger;
 	bool running;
-	int stepIndexRun;
+	int stepIndexRun = 0;
 	float notes[16][16]; // [-3.0 : 3.917]. First index is patten number, 2nd index is step
 	float sharpflats[16][16]; // [-3.0 : 3.917]. First index is patten number, 2nd index is step
 	float octaves[16][16];
